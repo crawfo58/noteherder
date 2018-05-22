@@ -21,20 +21,25 @@ const Sidebar = () => {
         />
       </div>
 
-      <a href="/notes">
+      <a href="/notes" >
         <img
           src={newHover}
           alt="New note"
+          style={styles.newNote}
         />
         <img
           src={newIcon}
           alt="New note"
+          style={styles.newNote}
         />
       </a>
 
-      <div class="SignOut">
-        <button>
-          <i class="fa fa-sign-out"></i>
+      <div class="SignOut" style={styles.signOut}>
+        <button style={styles.signOutButton}>
+          <i 
+            class="fa fa-sign-out"
+            style={styles.signOutButtonFont}
+          />
         </button>
       </div>
     </div>
@@ -58,6 +63,36 @@ const styles = {
   logoImg: {
     width: '3rem',
     paddingLeft: '0.4 rem'
+  },
+  newNote: {
+    marginTop: '2rem',
+    position: 'relative',
+    width: '40px'
+  },
+  button: {
+    backgroundColor: 'transparent',
+    border: '0',
+    color: '#008BF8',
+    cursor: 'pointer'
+  },
+  img: {
+    position: 'absolute',
+    left: '0',
+    width: '100%',
+    transition: 'opacity 0.25s ease-in-out'
+  },
+  outline: {
+    opacity: '0'
+  },
+  signOut: {
+    position: 'absolute',
+    bottom: '1rem'
+  },
+  signOutButton: {
+    outline: 'none'
+  },
+  signOutButtonFont: {
+    fontSize: '2rem'
   }
 }
 
