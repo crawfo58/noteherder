@@ -4,9 +4,22 @@ import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 
-const Sidebar = () => {
+class Sidebar extends React.Component {
+  state = {
+    newIconHovered: false
+  }
+
+  handleMouseEnter() {
+    this.setState({newIconHovered: true})
+  }
+
+  handleMouseLeave() {
+    this.setState({newIconHovered: false})
+  }
+
+  render() {
   return (
-    <div 
+    <nav 
       className="Sidebar"
       style={styles.sidebar}
     >
@@ -25,6 +38,8 @@ const Sidebar = () => {
         className="new-note"
         href="/notes" 
         style={styles.newNote}
+        onMouseEnter={() => this.handleMouseEnter()}
+        onMouseLeave={() => this.handleMouseLeave()}
       >
         <img
           src={newHover}
@@ -32,9 +47,13 @@ const Sidebar = () => {
           style={styles.newNoteImg}
         />
         <img
+          className="outline"
           src={newIcon}
           alt="New note"
-          style={styles.newNoteImg}
+          style={{
+            ...styles.newNoteImg,
+            opacity: this.state.newIconHovered ? 0 : 1
+          }}
         />
       </a>
 
@@ -46,8 +65,9 @@ const Sidebar = () => {
           />
         </button>
       </div>
-    </div>
+    </nav>
   )
+}
 }
 
 const styles = {
