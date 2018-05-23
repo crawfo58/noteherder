@@ -1,76 +1,47 @@
 import React from 'react'
+import { StyleSheet, css } from 'aphrodite'
 
 import quill from './quill.svg'
 import newIcon from './new.png'
 import newHover from './new-hover.png'
 
-class Sidebar extends React.Component {
-  state = {
-    newIconHovered: false
-  }
-
-  handleMouseEnter() {
-    this.setState({newIconHovered: true})
-  }
-
-  handleMouseLeave() {
-    this.setState({newIconHovered: false})
-  }
-
-  render() {
+const Sidebar = () => {
   return (
-    <nav 
-      className="Sidebar"
-      style={styles.sidebar}
-    >
-      <div 
-        className="logo"
-        styles={styles.logo}
-      >
+    <nav className={css(styles.sidebar)}>
++      <div className={css(styles.logo)}>
         <img 
           src={quill} 
           alt="Noteherder" 
-          style={styles.logoImg}
+          className={css(styles.logoImg)}
         />
       </div>
 
       <a 
-        className="new-note"
         href="/notes" 
-        style={styles.newNote}
-        onMouseEnter={() => this.handleMouseEnter()}
-        onMouseLeave={() => this.handleMouseLeave()}
+        className={css(styles.newNote)}
       >
         <img
           src={newHover}
           alt="New note"
-          style={styles.newNoteImg}
+          className={css(styles.newNoteImg)}
         />
         <img
-          className="outline"
           src={newIcon}
           alt="New note"
-          style={{
-            ...styles.newNoteImg,
-            opacity: this.state.newIconHovered ? 0 : 1
-          }}
+          className={css(styles.newNoteImg, styles.newNoteImgHover)}
         />
       </a>
 
-      <div class="SignOut" style={styles.signOut}>
-        <button style={styles.button}>
-          <i 
-            class="fa fa-sign-out"
-            style={styles.buttonIcon}
-          />
+      <div className={css(styles.signOut)}>
+        <button className={css(styles.button)}>
+        <i className={`fa fa-sign-out ${css(styles.buttonIcon)}`}></i>
         </button>
       </div>
     </nav>
   )
 }
-}
 
-const styles = {
+const styles = StyleSheet.create ({
   sidebar: {
     width: '6rem',
     backgroundColor: '#f3f3f3',
@@ -99,6 +70,11 @@ const styles = {
     width: '100%',
     transition: 'opacity 0.25s ease-in-out'
   },
+  newNoteImgHover: {
+    ':hover': {
+      opacity: 0
+    }
+  },
   button: {
     backgroundColor: 'transparent',
     border: '0',
@@ -113,6 +89,6 @@ const styles = {
   buttonIcon: {
     fontSize: '2rem'
   }
-}
+})
 
 export default Sidebar
