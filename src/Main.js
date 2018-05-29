@@ -15,7 +15,7 @@ class Main extends React.Component {
   }
 
   componentDidMount() {
-    base.syncState('notes', {
+    base.syncState(`${this.props.id}`, {
       context: this,
       state: 'notes',
       asArray: true
