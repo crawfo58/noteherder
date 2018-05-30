@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import {Route, Switch, Redirect} from 'react-router-dom'
+import { Route, Switch, Redirect } from 'react-router-dom'
 
 import './App.css'
 import { auth } from './base'
@@ -8,13 +8,13 @@ import SignIn from './SignIn'
 
 class App extends Component {
   state = {
-    uid: null
+    uid: null,
   }
 
   componentDidMount() {
     const uid = localStorage.getItem('uid')
-    if(uid) {
-      this.setState({uid})
+    if (uid) {
+      this.setState({ uid })
     }
     auth.onAuthStateChanged(user => {
       if (user) {
@@ -44,21 +44,25 @@ class App extends Component {
     return (
       <div className="App">
         <Switch>
-          <Route 
-            path="/sign-in" 
-            render={() => (
+          <Route
+            path="/sign-in"
+            render={navProps => (
               this.signedIn()
                 ? <Redirect to="/notes" />
-                : <SignIn />
+                : <SignIn {...navProps} />
             )}
           />
-          <Route 
-            path="/notes" 
-            render={() => (
+          <Route
+            path="/notes"
+            render={navProps => (
               this.signedIn()
-                ? <Main signOut={this.signOut} uid={this.state.uid} /> 
-                : <Redirect to="/sign-in" />
-            )} 
+               ? <Main
+                   signOut={this.signOut}
+                   uid={this.state.uid}
+                   {...navProps}
+                 />
+               : <Redirect to="/sign-in" />
+            )}
           />
           <Route
             render={() => (
