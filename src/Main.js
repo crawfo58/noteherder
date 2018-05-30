@@ -69,7 +69,8 @@ class Main extends React.Component {
     const formProps = {
       currentNote: this.state.currentNote,
       saveNote: this.saveNote,
-      removeCurrentNote: this.removeCurrentNote
+      removeCurrentNote: this.removeCurrentNote,
+      notes: this.state.notes
     }
     return (
       <div className="Main" style={style}>
