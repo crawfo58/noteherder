@@ -68,8 +68,8 @@ class Main extends React.Component {
   render() {
     const formProps = {
       currentNote: this.state.currentNote,
-      saveNote: this.state.saveNote,
-      removeCurrentNote: this.state.removeCurrentNote
+      saveNote: this.saveNote,
+      removeCurrentNote: this.removeCurrentNote
     }
     return (
       <div className="Main" style={style}>
@@ -79,7 +79,6 @@ class Main extends React.Component {
         />
         <NoteList 
           notes={this.state.notes}
-          setCurrentNote={this.setCurrentNote}
         />
       
         <Switch>
