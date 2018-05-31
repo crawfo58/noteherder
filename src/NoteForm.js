@@ -55,6 +55,13 @@ class NoteForm extends Component {
         </div>
         <form>
           <p>
+          <input
+              type="text"
+              name="date"
+              placeholder="Date your note"
+              value={this.state.note.date}
+              onChange={this.handleChanges}
+            />
             <input
               type="text"
               name="title"
