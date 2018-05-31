@@ -8,9 +8,6 @@ const Note = ({note}) => {
           className="Note"
         >
           <div className="note">
-            <div className="note-date">
-              {note.date}
-            </div>
             <div className="note-title">
               {note.title}
             </div>

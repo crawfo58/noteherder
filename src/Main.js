@@ -22,20 +22,14 @@ class Main extends React.Component {
     })
   }
 
-  blankNote = () => {
-    return {
-      id: null,
-      title: '',
-      body: ''
-    }
-  }
-
   saveNote = (note) => {
     let shouldRedirect = false
+    const timestamp = Date.now()
+    note.updatedAt = timestamp
     const notes = [...this.state.notes]
 
     if(!note.id) { //new note
-      note.id = Date.now()
+      note.id = timestamp
       notes.push(note)
       shouldRedirect = true
     }
@@ -43,6 +37,10 @@ class Main extends React.Component {
       const i = notes.findIndex(currentNote => currentNote.id === note.id)
       notes[i] = note
     }
+
+    notes.sort((a, b) => {
+      return b.updatedAt - a.updatedAt
+    })
 
     this.setState({notes})
 
@@ -53,14 +51,13 @@ class Main extends React.Component {
 
   removeNote = (currentNote) => {
     const notes = [...this.state.notes]
-    
+
     const i = notes.findIndex(note => note.id === currentNote.id)
-    if(i > -1) {
-      notes.splice(i,1)
-      this.setState({notes})
+    if (i > -1) {
+      notes.splice(i, 1)
+      this.setState({ notes })
       this.props.history.push('/notes')
-    } 
-    this.resetCurrentNote(currentNote)
+    }
   }
 
   render() {
